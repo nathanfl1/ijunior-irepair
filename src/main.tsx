@@ -4,8 +4,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css' // Importa o Tailwind globalmente
 import App from './App.tsx'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
+
+createRoot(document.getElementById("root")!).render(
+    <RouterProvider router={router} />
+);

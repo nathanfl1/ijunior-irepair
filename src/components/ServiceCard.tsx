@@ -1,50 +1,73 @@
-import type { OrdemServico } from "../interfaces/OrdemServico";
+import type { ServiceOrder } from "../interfaces/ServiceOrder";
 
-interface Props {
-    ordem: OrdemServico;
-    avancarStatus: (id: number) => void;
+interface ServiceCardProps {
+
+    order: ServiceOrder;
+
 }
 
-function ServiceCard({ ordem, avancarStatus }: Props) {
-    const corStatus = {
-        "Aberto": "bg-green-500",
-        "Em andamento": "bg-yellow-500",
-        "Finalizado": "bg-gray-500",
+const ServiceCard = ({ order }: ServiceCardProps) => {
+
+    const statusColor = {
+
+        open: "bg-green-500",
+
+        in_progress: "bg-yellow-500",
+
+        done: "bg-red-500"
+
+    };
+
+    const statusText = {
+
+        open: "Aberto",
+
+        in_progress: "Em andamento",
+
+        done: "Finalizado"
+
     };
 
     return (
-        <div className="bg-white rounded-lg shadow p-4 mb-4">
 
-            <h3 className="text-lg font-bold">
-                {ordem.cliente}
-            </h3>
+        <div className="bg-white rounded-lg shadow p-4 border">
 
-            <p>
-                <strong>Aparelho:</strong> {ordem.aparelho}
+            <h2 className="text-lg font-bold">
+
+                {order.device}
+
+            </h2>
+
+            <p className="mt-2">
+
+                <strong>Issue:</strong> {order.issue}
+
             </p>
 
             <p>
-                <strong>Defeito:</strong> {ordem.defeito}
+
+                <strong>Client ID:</strong> {order.client_id}
+
             </p>
 
-            <div className="flex items-center gap-2 mt-3">
-                <span
-                    className={`text-white px-3 py-1 rounded ${corStatus[ordem.status]}`}
-                >
-                    {ordem.status}
-                </span>
+            <p className="text-sm text-gray-500 mt-2">
 
-                {ordem.status !== "Finalizado" && (
-                    <button
-                        onClick={() => avancarStatus(ordem.id)}
-                        className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
-                    >
-                        Avançar status
-                    </button>
-                )}
-            </div>
+                {new Date(order.created_at).toLocaleDateString()}
+
+            </p>
+
+            <span
+                className={`inline-block mt-4 text-white px-3 py-1 rounded ${statusColor[order.status]}`}
+            >
+
+                {statusText[order.status]}
+
+            </span>
+
         </div>
+
     );
-}
+
+};
 
 export default ServiceCard;
