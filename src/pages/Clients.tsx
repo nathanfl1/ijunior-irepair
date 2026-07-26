@@ -34,7 +34,6 @@ const Clients = () => {
 
     async function createClient(client: Omit<Client, "id" | "created_at">) {
 
-            console.log(client);
         try {
 
             await api.post("/clients", client);

@@ -50,7 +50,6 @@ const Dashboard = () => {
         );
 
     }
-    console.log(orders);
     return (
 
         <div className="max-w-7xl mx-auto">
