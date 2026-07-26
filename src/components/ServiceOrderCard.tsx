@@ -78,7 +78,6 @@ const ServiceOrderCard = ({
 
                     <button
                         onClick={() => {
-                            console.log("Botão clicado");
                             advanceStatus(order);
                         }}
                         className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"

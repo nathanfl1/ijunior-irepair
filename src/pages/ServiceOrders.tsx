@@ -135,27 +135,13 @@ const ServiceOrders = () => {
         }
 
         try {
-            console.log({
-                clientId: order.client_id,
-                device: order.device,
-                issue: order.issue,
-                status: newStatus
-            });
+    
 
             await api.put(`/service-orders/${order.id}`, {
                 clientId: order.client_id,
                 device: order.device,
                 issue: order.issue,
                 status: newStatus
-            });
-
-            await api.put(`/service-orders/${order.id}`, {
-
-                clientId: order.client_id,
-                device: order.device,
-                issue: order.issue,
-                status: newStatus
-
             });
 
             await loadOrders();
