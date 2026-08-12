@@ -21,23 +21,23 @@ const ServiceOrderCard = ({
 }: ServiceOrderCardProps) => {
 
     const client = clients.find(
-        (client) => client.id === order.client_id
+        (client) => client.id === order.clientId
     );
 
     const statusColor = {
 
-        open: "bg-green-500",
+        OPEN: "bg-green-500",
 
-        in_progress: "bg-yellow-500",
+        IN_PROGRESS: "bg-yellow-500",
 
-        done: "bg-red-500"
+        CLOSED: "bg-red-500"
 
     };
 
     const statusText = {
-        open: "Aberto",
-        in_progress: "Em andamento",
-        done: "Finalizado"
+        OPEN: "Aberto",
+        IN_PROGRESS: "Em andamento",
+        CLOSED: "Finalizado"
     };
 
     return (
@@ -60,7 +60,7 @@ const ServiceOrderCard = ({
             <p className="mb-2">
 
                 <strong>Issue:</strong>{" "}
-                {order.issue}
+                {order.description}
 
             </p>
 
@@ -74,7 +74,7 @@ const ServiceOrderCard = ({
 
             {
 
-                order.status !== "done" && (
+                order.status !== "CLOSED" && (
 
                     <button
                         onClick={() => {
@@ -103,7 +103,7 @@ const ServiceOrderCard = ({
             <p className="text-sm text-gray-500 mt-4">
 
                 Created at{" "}
-                {new Date(order.created_at).toLocaleDateString()}
+                {new Date(order.createdAt).toLocaleDateString()}
 
             </p>
 

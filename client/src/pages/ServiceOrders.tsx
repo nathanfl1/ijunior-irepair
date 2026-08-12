@@ -49,8 +49,8 @@ const ServiceOrders = () => {
     async function createOrder(order: {
         clientId: number;
         device: string;
-        issue: string;
-        status: "open" | "in_progress" | "done";
+        description: string;
+        status: "OPEN" | "IN_PROGRESS" | "CLOSED";
     }) {
 
         try {
@@ -118,16 +118,20 @@ const ServiceOrders = () => {
 
     async function advanceStatus(order: ServiceOrder) {
 
-        let newStatus: "open" | "in_progress" | "done";
+        let newStatus: "OPEN" | "IN_PROGRESS" | "CLOSED";
+
         switch (order.status) {
 
-            case "open":
-                newStatus = "in_progress";
+            case "OPEN":
+                newStatus = "IN_PROGRESS";
                 break;
 
-            case "in_progress":
-                newStatus = "done";
+            case "IN_PROGRESS":
+                newStatus = "CLOSED";
                 break;
+
+            case "CLOSED":
+                return;
 
             default:
                 return;
@@ -135,12 +139,11 @@ const ServiceOrders = () => {
         }
 
         try {
-    
 
             await api.put(`/service-orders/${order.id}`, {
-                clientId: order.client_id,
+                clientId: order.clientId,
                 device: order.device,
-                issue: order.issue,
+                issue: order.description,
                 status: newStatus
             });
 
@@ -155,6 +158,7 @@ const ServiceOrders = () => {
         }
 
     }
+
     return (
 
         <div className="max-w-7xl mx-auto p-6">

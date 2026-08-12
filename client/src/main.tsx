@@ -1,12 +1,15 @@
-// main.tsx
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css' // Importa o Tailwind globalmente
-import App from './App.tsx'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
+import { AuthProvider } from './contexts/AuthContext' // <-- 1. Importe o AuthProvider
+import './index.css'
 
-import { RouterProvider } from "react-router-dom";
-import { router } from "./router";
-
-createRoot(document.getElementById("root")!).render(
-    <RouterProvider router={router} />
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    {}
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>,
+)

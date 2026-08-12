@@ -1,8 +1,8 @@
 export interface ServiceOrder {
     id: number;
-    client_id: number;
+    clientId: number;
     device: string;
-    issue: string;
-    status: "open" | "in_progress" | "done";
-    created_at: string;
+    description: string;
+    status: "OPEN" | "IN_PROGRESS" | "CLOSED";
+    createdAt: string;
 }

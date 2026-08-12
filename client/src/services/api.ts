@@ -1,12 +1,19 @@
-// 1202bdc3-11a5-4030-bfb0-a65d1d11a252
-
-import axios from "axios";
+import axios from 'axios'
 
 export const api = axios.create({
-    baseURL: "https://trainee.fidelis.workers.dev/api",
+  baseURL: import.meta.env.VITE_API_URL, 
+  withCredentials: true,                 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
 
-    headers: {
-        Authorization: "Bearer 1202bdc3-11a5-4030-bfb0-a65d1d11a252"
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response?.status === 401 && window.location.pathname !== '/login') {
+      window.location.href = '/login'
     }
-});
-
+    return Promise.reject(error)
+  }
+)

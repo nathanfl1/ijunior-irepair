@@ -8,8 +8,8 @@ interface NewServiceOrderFormProps {
     createOrder: (order: {
         clientId: number;
         device: string;
-        issue: string;
-        status: "open" | "in_progress" | "done";
+        description: string;
+        status: "OPEN" | "IN_PROGRESS" | "CLOSED";
     }) => void;
 }
 
@@ -20,14 +20,14 @@ const NewServiceOrderForm = ({
 
     const [clientId, setClientId] = useState<number>(0);
     const [device, setDevice] = useState("");
-    const [issue, setIssue] = useState("");
-    const [status, setStatus] = useState<"open" | "in_progress" | "done">("open");
+    const [description, setIssue] = useState("");
+    const [status, setStatus] = useState<"OPEN" | "IN_PROGRESS" | "CLOSED">("OPEN");
 
     const [error, setError] = useState("");
 
     function handleSubmit() {
 
-        if (clientId === 0 || !device || !issue) {
+        if (clientId === 0 || !device || !description) {
 
             setError("Preencha todos os campos!");
 
@@ -39,7 +39,7 @@ const NewServiceOrderForm = ({
 
             clientId,
             device,
-            issue,
+            description,
             status
 
         });
@@ -47,7 +47,7 @@ const NewServiceOrderForm = ({
         setClientId(0);
         setDevice("");
         setIssue("");
-        setStatus("open");
+        setStatus("OPEN");
 
         setError("");
 
@@ -116,7 +116,7 @@ const NewServiceOrderForm = ({
                 <input
                     className="border rounded p-2"
                     placeholder="Issue"
-                    value={issue}
+                    value={description}
                     onChange={(e) => {
 
                         setIssue(e.target.value);
@@ -130,24 +130,24 @@ const NewServiceOrderForm = ({
                     value={status}
                     onChange={(e) =>
                         setStatus(
-                            e.target.value as "open" | "in_progress" | "done"
+                            e.target.value as "OPEN" | "IN_PROGRESS" | "CLOSED"
                         )
                     }
                 >
 
-                    <option value="open">
+                    <option value="OPEN">
 
                         Aberto
 
                     </option>
 
-                    <option value="in_progress">
+                    <option value="IN_PROGRESS">
 
                         Em andamento
 
                     </option>
 
-                    <option value="closed">
+                    <option value="CLOSED">
 
                         Finalizado
 

@@ -25,6 +25,7 @@ export class ClientController {
       const client = await clientService.create({ name, phone, email })
       return res.status(201).json(client)
     } catch (error) {
+
       return res.status(500).json({ error: 'Erro ao criar cliente' })
     }
   }

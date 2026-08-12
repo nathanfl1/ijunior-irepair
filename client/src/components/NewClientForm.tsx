@@ -4,7 +4,7 @@ import type { Client } from "../interfaces/Client";
 
 interface NewClientFormProps {
     createClient: (
-        client: Omit<Client, "id" | "created_at">
+        client: Omit<Client, "id" | "createdAt">
     ) => void;
 }
 
@@ -30,7 +30,7 @@ const NewClientForm = ({ createClient }: NewClientFormProps) => {
 
             name,
             phone,
-            email
+            email,
 
         });
 

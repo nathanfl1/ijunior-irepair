@@ -10,4 +10,5 @@ serviceOrderRoutes.use(authMiddleware)
 serviceOrderRoutes.get('/', serviceOrderController.index.bind(serviceOrderController))
 serviceOrderRoutes.post('/', serviceOrderController.create.bind(serviceOrderController))
 serviceOrderRoutes.delete('/:id', serviceOrderController.delete.bind(serviceOrderController))
+serviceOrderRoutes.put('/:id', serviceOrderController.update.bind(serviceOrderController))
 export { serviceOrderRoutes }

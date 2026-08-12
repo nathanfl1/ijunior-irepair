@@ -3,5 +3,5 @@ export interface Client {
     name: string;
     phone: string;
     email: string;
-    created_at: string;
+    createdAt: string;
 }
