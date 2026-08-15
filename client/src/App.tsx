@@ -17,7 +17,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
 
           {/* Rotas protegidas — envolvem o layout já existente */}
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute> <Dashboard /></PrivateRoute>}>
             <Route element={<MainLayout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/clients" element={<Clients />} />
